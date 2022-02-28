@@ -1,0 +1,196 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <p-card [style]="{'margin-top': '2%','margin-bottom': '2%'}">
+        <div class="no-data" *ngIf="displayUsersList.length ==0">
+          <span>No user data found</span>
+        </div>
+
+        <div *ngIf="displayUsersList.length > 0">
+          <button label="Add User" class="add-user-btn btn btn-outline-primary" (click)="AddNewUser()">Add User</button>
+          <span style="float: right;" class="form-group row">
+            Show all users
+            <p-inputSwitch class="col-md-4" [(ngModel)]="showInactive" (onChange)="showInactiveUsers()"></p-inputSwitch>
+          </span>
+          <p-table styleClass="p-datatable-sm" [value]="displayUsersList" [paginator]="displayUsersList.length > 5"
+            [rows]="5">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Employee Code</th>
+                <th>Employee Name</th>
+                <th>Date Of Joining</th>
+                <th>Role</th>
+                <th *ngIf="showInactive">Status</th>
+                <th></th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-user>
+              <tr [ngClass]="{'inactive' : user.Status =='Inactive'}">
+                <td>{{user.EmployeeCode}}</td>
+                <td>{{user.FirstName |titlecase}} {{user.LastName |titlecase}}</td>
+                <td>{{user.DateOfJoining| date: 'dd/MM/yyyy'}}</td>
+                <td>{{user.Role}}</td>
+                <td *ngIf="showInactive">{{user.Status}}</td>
+                <td>
+                  <a href="#"><img class="action-icon" title="View User Details" (click)="ViewUser(user.EmployeeCode)"
+                      height="40" width="40" src="../../../assets/icons/view-icon.png" /></a>
+                  <a routerLink="/editUser/{{user.EmployeeCode}}"><img class="action-icon" title="Edit User" height="40"
+                      width="40" src="../../../assets/icons/edit.png" /></a>
+                  <a *ngIf="user.Status =='Active'" href="#"><img class="action-icon" title="Apply For Leave"
+                      (click)="ApplyLeave(user.EmployeeCode)" height="40" width="40"
+                      src="../../../assets/icons/leave.png" /></a>
+                  <a *ngIf="isAdmin" href="#"><img class="action-icon" title="Delete User"
+                      (click)="DeleteUser(user.EmployeeCode)" height="40" width="40"
+                      src="../../../assets/icons/delete.png" /></a>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </p-card>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <p-card [style]="{'margin-bottom': '3%'}">
+        <div>
+          <h4>
+            Users on leave
+          </h4>
+        </div>
+        <div *ngIf="usersLeavesList.length > 0">
+          <p-table [value]="usersLeavesList" [paginator]="usersLeavesList.length > 5" [rows]="5">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Employee Name</th>
+                <th>Date(s)</th>
+                <th>Day(s)</th>
+                <th *ngIf="isAdmin">     </th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-user>
+              <tr>
+                <td>{{user.FirstName |titlecase}} {{user.LastName |titlecase}}</td>
+                <td><span *ngIf="user.NumberOfDays == 1">{{user.StartDate| date: 'dd/MM/yy'}}</span>
+                  <span *ngIf="user.NumberOfDays > 1">{{user.StartDate| date: 'dd/MM/yy'}} - {{user.EndDate| date:
+                    'dd/MM/yy'}}</span>
+                </td>
+                <td>{{user.NumberOfDays}}</td>
+                <td *ngIf="isAdmin && user.Status =='Applied'">
+                  <a href="#"><img class="action-icon" title="Approve Leave"
+                      (click)="UpdateLeaveStatus(user.EmployeeCode,user.LeaveId,'Approve')" height="20" width="20"
+                      src="../../../assets/icons/approve.png" /></a>
+                  <a href="#"><img class="action-icon" title="Reject Leave"
+                      (click)="UpdateLeaveStatus(user.EmployeeCode,user.LeaveId,'Reject')" height="20" width="20"
+                      src="../../../assets/icons/reject.png" /></a>
+
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+        <div class="no-data" *ngIf="usersLeavesList.length ==0">
+          <span>No upcoming leaves</span>
+        </div>
+      </p-card>
+    </div>
+
+    <div class="col-md-6">
+      <p-card [style]="{'margin-bottom': '3%'}">
+        <h4>
+          User leaves in current year
+        </h4>
+        <div id="barChart"></div>
+      </p-card>
+    </div>
+  </div>
+  <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle" rejectButtonStyleClass="p-button-text">
+  </p-confirmDialog>
+  <p-dialog header="User Details" [(visible)]="displayModal" [modal]="true" [style]="{width: '70vw'}"
+    [draggable]="false" [resizable]="false">
+    <div class="m-0">
+      <div class="form-group row view-popup-row">
+        <div class="col-md-6">
+          <label for="employeeCode" class="col-md-5 user-label">Employee Code</label>
+          <label class="col-md-7">{{user.EmployeeCode | uppercase}}</label>
+        </div>
+        <div class="col-md-6">
+          <label for="firstname" class="col-md-5 user-label">First Name</label>
+          <label class="col-md-7">{{user.FirstName|titlecase}}</label>
+        </div>
+
+      </div>
+      <div class="form-group row view-popup-row">
+        <div class="col-md-6">
+          <label for="firstname" class="col-md-5 user-label">Last Name</label>
+          <label class="col-md-7">{{user.LastName |titlecase}}</label>
+        </div>
+        <div class="col-md-6">
+          <label for="firstname" class="col-md-5 user-label">Date of Joining</label>
+          <label class="col-md-7">{{user.DateOfJoining | date: 'dd/MM/yyyy'}}</label>
+        </div>
+      </div>
+      <div class="form-group row view-popup-row">
+        <div class="col-md-6">
+          <label for="firstname" class="col-md-5 user-label">Date of birth</label>
+          <label class="col-md-7">{{user.DateOfBirth | date: 'dd/MM/yyyy'}}</label>
+        </div>
+        <div class="col-md-6">
+          <label for="firstname" class="col-md-5 user-label">Gender</label>
+          <label class="col-md-7">{{user.Gender}}</label>
+        </div>
+      </div>
+      <div class="form-group row view-popup-row">
+        <div class="col-md-6">
+          <label for="firstname" class="col-md-5 user-label">Marital status</label>
+          <label class="col-md-7">{{user.MaritalStatus}}</label>
+        </div>
+        <div class="col-md-6">
+          <label for="firstname" class="col-md-5 user-label">Role</label>
+          <label class="col-md-7">{{user.Role}}</label>
+        </div>
+      </div>
+
+      <div class="form-group row view-popup-row">
+        <div class="col-md-6">
+          <label for="firstname" class="col-md-5 user-label">Mobile Number</label>
+          <label class="col-md-7">{{user.MobileNumber}}</label>
+        </div>
+        <div class="col-md-6">
+          <label for="firstname" class="col-md-5 user-label">Status</label>
+          <label class="col-md-7">{{user.Status}}</label>
+        </div>
+      </div>
+
+      <div class="form-group row view-popup-row">
+        <div class="col-md-6">
+          <label for="firstname" class="col-md-5 user-label">Annual Leaves</label>
+          <label class="col-md-7">{{user.AnnualLeave}}</label>
+        </div>
+        <div class="col-md-6">
+          <label for="firstname" class="col-md-5 user-label">Sick Leave</label>
+          <label class="col-md-7">{{user.SickLeave}}</label>
+        </div>
+      </div>
+      <div class="form-group row view-popup-row">
+        <div class="col-md-6">
+          <label for="firstname" class="col-md-5 user-label">Unpaid leaves availed</label>
+          <label class="col-md-7">{{user.UnpaidLeave}}</label>
+        </div>
+        <div class="col-md-6" *ngIf="user.Gender != 'Male'">
+          <label for="firstname" class="col-md-5 user-label">Maternity Leave</label>
+          <label class="col-md-7">{{user.MaternityLeave}}</label>
+        </div>
+        <div class="col-md-6" *ngIf="user.Gender != 'Female'">
+          <label for="firstname" class="col-md-5 user-label">Paternal Leave</label>
+          <label class="col-md-7">{{user.PaternalLeave}}</label>
+        </div>
+      </div>
+    </div>
+    <ng-template pTemplate="footer">
+      <p-button icon="pi pi-check" (click)="displayModal=false" label="Ok" styleClass="p-button-text"></p-button>
+    </ng-template>
+  </p-dialog>
+
+</div>

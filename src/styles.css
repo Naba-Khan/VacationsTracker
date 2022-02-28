@@ -1,0 +1,61 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; 
+   font-family: Roboto, "Helvetica Neue", sans-serif;
+   /* background-color: #eaedef; */
+}
+/* input[type="text"],input[type="email"] {
+
+    border:none; 
+    border-bottom:1px solid black; 
+
+ } */
+ p-calendar{
+    display: grid;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 0;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    appearance: none;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+ }
+ .error-message{
+   width: 100%;
+   margin-top: 0.25rem;
+   font-size: .875em;
+   color: #dc3545;
+ }
+ .ng-invalid.ng-touched {
+   border-color: red;
+}
+input[type="text"],p-calendar,select{
+   border-color: #212529 !important;
+}
+.p-datepicker-touch-ui, .p-calendar .p-datepicker-touch-ui{
+   min-width:25vw !important
+}
+.p-card{
+   box-shadow: 0 2px 1px -1px rgb(0 0 0 / 60%), 0 1px 1px 0 rgb(0 0 0 / 50%), 0 1px 3px 0 rgb(0 0 0 / 90%) !important
+}
+.p-card .p-card-body{
+   padding: 0 2% !important;
+ }
+ .axis-x,.axis--y{
+    font-size: 14px;
+ }
+ .form-header{
+   margin-bottom: 3%;
+   padding-top: 2%;
+}
+.yAxis-label{
+   text-align: center;
+}
+
+
+
+

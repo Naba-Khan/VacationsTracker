@@ -1,0 +1,175 @@
+[
+    {
+        "LeaveId":3412900,
+        "EmployeeCode": "ABC2",
+        "FirstName": "Ilah",
+        "LastName": "Khan",
+        "StartDate": "2022-01-02T18:30:00.000Z",
+        "EndDate": "2022-01-10T18:30:00.000Z",
+        "NumberOfDays": 7,
+        "LeaveType": "AnnualLeave",
+        "Status": "Applied"
+    },
+    {
+        "LeaveId":6590220,
+        "EmployeeCode": "ABC4",
+        "FirstName": "Shweta",
+        "LastName": "Shrivastava",
+        "StartDate": "2022-02-27T18:30:00.000Z",
+        "EndDate": "2022-02-27T18:30:00.000Z",
+        "NumberOfDays": 1,
+        "LeaveType": "AnnualLeave",
+        "Status": "Applied"
+    },
+    {
+        "LeaveId":2023580,
+        "EmployeeCode": "ABC2",
+        "FirstName": "Ilah",
+        "LastName": "Khan",
+        "StartDate": "2022-02-20T18:30:00.000Z",
+        "EndDate": "2022-02-28T18:30:00.000Z",
+        "NumberOfDays": 6,
+        "LeaveType": "AnnualLeave",
+        "Status": "Applied"
+    },
+    {
+        "LeaveId":8046916,
+        "EmployeeCode": "ABC3",
+        "FirstName": "Brad",
+        "LastName": "Gibson",
+        "StartDate": "2022-03-27T18:30:00.000Z",
+        "EndDate": "2022-03-28T18:30:00.000Z",
+        "NumberOfDays": 2,
+        "LeaveType": "AnnualLeave",
+        "Status": "Applied"
+    },
+    
+    {
+        "LeaveId":2663922,
+        "EmployeeCode": "ABC4",
+        "FirstName": "Shweta",
+        "LastName": "Shrivastava",
+        "StartDate": "2022-03-31T18:30:00.000Z",
+        "EndDate": "2022-04-06T18:30:00.000Z",
+        "NumberOfDays": 5,
+        "LeaveType": "AnnualLeave",
+        "Status": "Applied"
+    },
+    
+    {
+        "LeaveId":4806302,
+        "EmployeeCode": "ABC5",
+        "FirstName": "Brian",
+        "LastName": "Soria",
+        "StartDate": "2022-04-10T18:30:00.000Z",
+        "EndDate": "2022-04-12T18:30:00.000Z",
+        "NumberOfDays": 3,
+        "LeaveType": "AnnualLeave",
+        "Status": "Applied"
+    },
+    
+    {
+        "LeaveId":8060998,
+        "EmployeeCode": "ABC4",
+        "FirstName": "Shweta",
+        "LastName": "Shrivastava",
+        "StartDate": "2022-05-01T18:30:00.000Z",
+        "EndDate": "2022-05-02T18:30:00.000Z",
+        "NumberOfDays": 2,
+        "LeaveType": "AnnualLeave",
+        "Status": "Applied"
+    },    
+    {
+        "LeaveId":6272397,
+        "EmployeeCode": "ABC1",
+        "FirstName": "Naba",
+        "LastName": "Khan",
+        "StartDate": "2022-05-01T18:30:00.000Z",
+        "EndDate": "2022-05-04T18:30:00.000Z",
+        "NumberOfDays": 4,
+        "LeaveType": "SickLeave",
+        "Status": "Applied"
+    },
+       
+    {
+        "LeaveId":6945765,
+        "EmployeeCode": "ABC3",
+        "FirstName": "brad",
+        "LastName": "gibson",
+        "StartDate": "2022-06-05T18:30:00.000Z",
+        "EndDate": "2022-06-09T18:30:00.000Z",
+        "NumberOfDays": 5,
+        "LeaveType": "SickLeave",
+        "Status": "Applied"
+    },
+       
+    {
+        "LeaveId":8091326,
+        "EmployeeCode": "ABC5",
+        "FirstName": "Brian",
+        "LastName": "Soria",
+        "StartDate": "2022-07-05T18:30:00.000Z",
+        "EndDate": "2022-07-09T18:30:00.000Z",
+        "NumberOfDays": 5,
+        "LeaveType": "AnnualLeave",
+        "Status": "Applied"
+    },
+       
+    {
+        "LeaveId":7357518,
+        "EmployeeCode": "ABC1",
+        "FirstName": "Naba",
+        "LastName": "Khan",
+        "StartDate": "2022-06-30T18:30:00.000Z",
+        "EndDate": "2022-09-01T18:30:00.000Z",
+        "NumberOfDays": 45,
+        "LeaveType": "MaternityLeave",
+        "Status": "Applied"
+    },
+    
+    
+    {
+        "LeaveId":1860123,
+        "EmployeeCode": "ABC4",
+        "FirstName": "Shweta",
+        "LastName": "Shrivastava",
+        "StartDate": "2022-09-04T18:30:00.000Z",
+        "EndDate": "2022-09-12T18:30:00.000Z",
+        "NumberOfDays": 6,
+        "LeaveType": "AnnualLeave",
+        "Status": "Applied"
+    },
+    {
+        "LeaveId":37626,
+        "EmployeeCode": "ABC3",
+        "FirstName": "Brad",
+        "LastName": "Gibson",
+        "StartDate": "2022-10-02T18:30:00.000Z",
+        "EndDate": "2022-10-09T18:30:00.000Z",
+        "NumberOfDays": 5,
+        "LeaveType": "AnnualLeave",
+        "Status": "Applied"
+    },
+    {
+        "LeaveId":57699,
+        "EmployeeCode": "ABC2",
+        "FirstName": "Ilah",
+        "LastName": "Khan",
+        "StartDate": "2022-11-08T18:30:00.000Z",
+        "EndDate": "2022-11-14T18:30:00.000Z",
+        "NumberOfDays": 3,
+        "LeaveType": "AnnualLeave",
+        "Status": "Applied"
+    },
+    {
+        "LeaveId":32086,
+        "EmployeeCode": "ABC7",
+        "FirstName": "Codee",
+        "LastName": "Lea",
+        "StartDate": "2022-10-31T18:30:00.000Z",
+        "EndDate": "2022-12-26T18:30:00.000Z",
+        "NumberOfDays": 40,
+        "LeaveType": "MaternityLeave",
+        "Status": "Applied"
+    }
+]

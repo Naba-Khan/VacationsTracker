@@ -1,0 +1,73 @@
+<div class="main-div">
+    <div class="container container-div">
+        <h3 class="form-header">Leave Application</h3>
+        <form class="row g-3 needs-validation" [formGroup]="leaveApplicationForm" novalidate>
+            <div class="col-md-6 form-elements">
+                <label for="employeeCode" class="form-label">Employee Code</label>
+                <label class="form-control-plaintext">{{user.EmployeeCode}}</label>
+            </div>
+            <div class="col-md-6 form-elements">
+                <label for="employeeCode" class="form-label">Employee Name</label>
+                <label class="form-control-plaintext">{{user.FirstName}} {{user.LastName}}</label>
+            </div>
+            <div class="col-md-6 form-elements">
+                <label for="leaveType" class="form-label">Leave Type</label>
+                <select formControlName="leaveType" [(ngModel)]="userLeave.LeaveType"
+                    (ngModelChange)="LeaveTypeSelected()" class="form-select" id="leaveType">
+                    <option value="">Select leave type</option>
+                    <option *ngFor="let x of leaveTypes" [value]="x.LeaveType">{{x.Name}}</option>
+                </select>
+                <div
+                    *ngIf="leaveApplicationForm.controls['leaveType'].invalid && leaveApplicationForm.controls['leaveType'].touched">
+                    <div class="error-message" *ngIf="leaveApplicationForm.controls['leaveType'].errors?.['required']">
+                        Please select leave type.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 form-elements">
+                <label for="employeeCode" class="form-label">Leave Balance</label>
+                <label class="form-control-plaintext">{{userLeave.LeaveType == 'UnpaidLeave' ? 0 :leaveBalance}}</label>
+            </div>
+
+
+            <div class="col-md-6 form-elements">
+                <label for="startDate" class="form-label">From </label>
+                <p-calendar id="startDate" formControlName="startDate" [(ngModel)]="startDate" dateFormat="dd-mm-yy"
+                    [showIcon]="true" [showTime]="true" [selectOtherMonths]="true" [disabledDates]="vacationDates"
+                    [disabledDays]="[0,6]" [touchUI]="true" (ngModelChange)="DateSelected()"></p-calendar>
+                <div
+                    *ngIf="leaveApplicationForm.controls['startDate'].invalid && leaveApplicationForm.controls['startDate'].touched">
+                    <div class="error-message" *ngIf="leaveApplicationForm.controls['startDate'].errors?.['required']">
+                        Please select from date.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 form-elements">
+                <label for="endDate" class="form-label">To </label>
+                <p-calendar id="endDate" formControlName="endDate" [(ngModel)]="endDate" dateFormat="dd-mm-yy"
+                    [showIcon]="true" [showTime]="true" [selectOtherMonths]="true" [disabledDates]="vacationDates"
+                    [disabledDays]="[0,6]" [touchUI]="true" (ngModelChange)="DateSelected()"></p-calendar>
+                <div
+                    *ngIf="leaveApplicationForm.controls['endDate'].invalid && leaveApplicationForm.controls['endDate'].touched">
+                    <div class="error-message" *ngIf="leaveApplicationForm.controls['endDate'].errors?.['required']">
+                        Please select to date.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 form-elements">
+                <label for="employeeCode" class="form-label">Number of Days</label>
+                <label class="form-control-plaintext">{{userLeave.NumberOfDays}}</label>
+            </div>
+            <!-- <div class="col-md-6">
+                <label for="status" class="form-label">Status</label>
+                <input type="text"  id="status" name="status" [(ngModel)]="user.Status" class="form-control">
+            </div> -->
+            <div class="col-12 buttons">
+                <button type="submit" class="btn btn-outline-primary" (click)="Save()">Apply</button>
+                <button type="submit" class="btn btn-outline-info" (click)="Reset()">Reset</button>
+                <button type="submit" class="btn btn-outline-dark" (click)="Cancel()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,132 @@
+<div class="main-div">
+    <div class="container container-div">
+        <h3 class="form-header">{{isUpdate?'Update':'Add'}} User</h3>
+        <form class="row g-3 needs-validation" [formGroup]="addUserForm" novalidate>
+            <div class="col-md-6 form-elements">
+                <label for="employeeCode" class="form-label">Employee Code</label>
+                <input maxlength="50" type="text" formControlName="employeeCode" class="form-control" id="employeeCode"
+                    [(ngModel)]="user.EmployeeCode">
+                <div
+                    *ngIf="addUserForm.controls['employeeCode'].invalid && addUserForm.controls['employeeCode'].touched">
+                    <div class="error-message" *ngIf="addUserForm.controls['employeeCode'].errors?.['required']">
+                        Please enter employee code.
+                    </div>
+                    <div class="error-message" *ngIf="addUserForm.controls['employeeCode'].errors?.['pattern']">
+                        Employee code must be an aplha numeric value of 4 characters.
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-md-6 form-elements"></div> -->
+            <div class="col-md-6 form-elements">
+                <label for="firstName" class="form-label">First Name</label>
+                <input maxlength="50" type="text" formControlName="firstName" class="form-control" id="firstName"
+                    [(ngModel)]="user.FirstName">
+                <div *ngIf="addUserForm.controls['firstName'].invalid && addUserForm.controls['firstName'].touched">
+                    <div class="error-message" *ngIf="addUserForm.controls['firstName'].errors?.['required']">
+                        Please enter first name.
+                    </div>
+                    <div class="error-message" *ngIf="addUserForm.controls['firstName'].errors?.['pattern']">
+                        Please enter valid first name.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 form-elements">
+                <label for="clastName" class="form-label">Last Name</label>
+                <input maxlength="50" type="text" id="lastName" formControlName="lastName" class="form-control"
+                    [(ngModel)]="user.LastName">
+                <div *ngIf="addUserForm.controls['lastName'].invalid && addUserForm.controls['lastName'].touched">
+                    <div class="error-message" *ngIf="addUserForm.controls['lastName'].errors?.['required']">
+                        Please enter last name.
+                    </div>
+                    <div class="error-message" *ngIf="addUserForm.controls['lastName'].errors?.['pattern']">
+                        Please enter valid last name.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 form-elements">
+                <label for="dob" class="form-label">Date Of Birth</label>
+                <p-calendar [maxDate]="maxDate" id="dob" formControlName="DateOfBirth" [(ngModel)]="dateOfBirth" dateFormat="dd-mm-yy"
+                    [showIcon]="true" [selectOtherMonths]="true" [touchUI]="true"></p-calendar>
+                <div *ngIf="addUserForm.controls['DateOfBirth'].invalid && addUserForm.controls['DateOfBirth'].touched">
+                    <div class="error-message" *ngIf="addUserForm.controls['DateOfBirth'].errors?.['required']">
+                        Please enter date of birth.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 form-elements">
+                <label for="mobileNumber" class="form-label">Mobile Number</label>
+                <input type="text" [(ngModel)]="user.MobileNumber" formControlName="mobileNumber" id="mobileNumber"
+                    class="form-control">
+                <div
+                    *ngIf="addUserForm.controls['mobileNumber'].invalid && addUserForm.controls['mobileNumber'].touched">
+                    <div class="error-message" *ngIf="addUserForm.controls['mobileNumber'].errors?.['required']">
+                        Please enter mobile number.
+                    </div>
+                    <div class="error-message" *ngIf="addUserForm.controls['mobileNumber'].errors?.['pattern']">
+                        Please enter valid mobile number.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 form-elements">
+                <label for="doj" class="form-label">Date Of Joining</label>
+                <p-calendar  formControlName="DateOfJoining" [(ngModel)]="dateOfJoining" dateFormat="dd-mm-yy"
+                    [showIcon]="true" [selectOtherMonths]="true" inputId="doj" [touchUI]="true"></p-calendar>
+                <div
+                    *ngIf="addUserForm.controls['DateOfJoining'].invalid && addUserForm.controls['DateOfJoining'].touched">
+                    <div class="error-message" *ngIf="addUserForm.controls['DateOfJoining'].errors?.['required']">
+                        Please enter date of joining.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 form-elements">
+                <label for="role" class="form-label">Role</label>
+                <input type="text" formControlName="Role" class="form-control" id="role" [(ngModel)]="user.Role">
+                <div *ngIf="addUserForm.controls['Role'].invalid && addUserForm.controls['Role'].touched">
+                    <div class="error-message" *ngIf="addUserForm.controls['Role'].errors?.['required']">
+                        Please enter role of user.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 form-elements">
+                <label for="gender" class="form-label">Gender</label>
+                <select formControlName="Gender" [(ngModel)]="user.Gender" class="form-select" id="gender">
+                    <option value="">Please select gender</option>
+                    <option *ngFor="let x of Gender" [value]="x">{{x}}</option>
+                </select>
+                <div *ngIf="addUserForm.controls['Gender'].invalid && addUserForm.controls['Gender'].touched">
+                    <div class="error-message" *ngIf="addUserForm.controls['Gender'].errors?.['required']">
+                        Please select gender.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 form-elements">
+                <label for="maritalStatus" class="form-label">Marital Status</label>
+                <select formControlName="MaritalStatus" [(ngModel)]="user.MaritalStatus" class="form-select"
+                    id="maritalStatus">
+                    <option value="">Please select marital status</option>
+                    <option *ngFor="let x of MaritalStatus" [value]="x">{{x}}</option>
+                </select>
+                <div
+                    *ngIf="addUserForm.controls['MaritalStatus'].invalid && addUserForm.controls['MaritalStatus'].touched">
+                    <div class="error-message" *ngIf="addUserForm.controls['MaritalStatus'].errors?.['required']">
+                        Please select marital status.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="status" class="form-label">Status</label>
+                <select [ngModelOptions]="{standalone: true}" [(ngModel)]="user.Status" class="form-select"
+                id="status">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+            </select>
+            </div>
+            <div class="col-12 buttons">
+                <button type="submit" class="btn btn-outline-primary"
+                    (click)="Save()">{{isUpdate?'Update':'Save'}}</button>
+                <button type="submit" class="btn btn-outline-info" (click)="Reset()">Reset</button>
+                <button type="submit" class="btn btn-outline-dark" (click)="Cancel()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

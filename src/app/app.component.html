@@ -1,0 +1,24 @@
+<!-- <nav class="navbar  navbar-light" style="background-color: #0f5694;">
+  <img src="../assets/icons/editUserpng.png" height="30" width="30" />
+  <a class="navbar-brand navBar" routerLink="/">Human Resource Management (HRMS)</a>
+</nav> -->
+<nav class="navbar  navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand navBar" routerLink="/">
+      <img src="../assets/icons/logo.jfif" alt="" width="80" height="50" class="d-inline-block">
+      Human Resource Management
+    </a>
+    <div class="toggle-div">
+      <form class="d-flex">
+        <label class="form-label me-2 admin-label">Switch As Admin</label>
+            <p-inputSwitch name="switchAsAdmin" [(ngModel)]="isAdmin" (onChange)="switchAsAdmin()"></p-inputSwitch>
+          
+        <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button> -->
+      </form>
+    </div>
+  </div>
+</nav>
+<p-toast></p-toast>
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+<router-outlet></router-outlet>
