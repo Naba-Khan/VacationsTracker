@@ -66,25 +66,26 @@
                 <th>Employee Name</th>
                 <th>Date(s)</th>
                 <th>Day(s)</th>
-                <th *ngIf="isAdmin">     </th>
+                <th>Status</th>
               </tr>
             </ng-template>
             <ng-template pTemplate="body" let-user>
-              <tr>
+              <tr [ngClass]="{'inactive' : user.Status =='Rejected'}">
                 <td>{{user.FirstName |titlecase}} {{user.LastName |titlecase}}</td>
                 <td><span *ngIf="user.NumberOfDays == 1">{{user.StartDate| date: 'dd/MM/yy'}}</span>
                   <span *ngIf="user.NumberOfDays > 1">{{user.StartDate| date: 'dd/MM/yy'}} - {{user.EndDate| date:
                     'dd/MM/yy'}}</span>
                 </td>
                 <td>{{user.NumberOfDays}}</td>
-                <td *ngIf="isAdmin && user.Status =='Applied'">
-                  <a href="#"><img class="action-icon" title="Approve Leave"
-                      (click)="UpdateLeaveStatus(user.EmployeeCode,user.LeaveId,'Approve')" height="20" width="20"
+                <td>
+                  <a *ngIf="isAdmin && user.Status == 'Applied'" href="#"><img class="action-icon" title="Approve Leave"
+                      (click)="UpdateLeaveStatus(user.EmployeeCode,user.LeaveId,'Approved')" height="20" width="20"
                       src="../../../assets/icons/approve.png" /></a>
-                  <a href="#"><img class="action-icon" title="Reject Leave"
-                      (click)="UpdateLeaveStatus(user.EmployeeCode,user.LeaveId,'Reject')" height="20" width="20"
+                  <a *ngIf="isAdmin && user.Status == 'Applied'" href="#"><img class="action-icon" title="Reject Leave"
+                      (click)="UpdateLeaveStatus(user.EmployeeCode,user.LeaveId,'Rejected')" height="20" width="20"
                       src="../../../assets/icons/reject.png" /></a>
-
+                      
+                  {{isAdmin && user.Status == 'Applied'?'':user.Status}}
                 </td>
               </tr>
             </ng-template>

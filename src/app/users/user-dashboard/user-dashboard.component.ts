@@ -93,7 +93,7 @@ export class UserDashboardComponent implements OnInit {
       this.leaveChartData.push(new LeaveChartData(i, 0, monthNames[i], colors[i]));
     }
     if (this.usersLeavesList.length > 0) {
-      let approvedLeaves = this.usersLeavesList.filter(z=>z.Status != 'Reject');
+      let approvedLeaves = this.usersLeavesList.filter(z=>z.Status != 'Rejected');
       approvedLeaves.forEach(data => {
         let startDate = new Date(data.StartDate);
         let endDate = new Date(data.EndDate);
@@ -241,7 +241,7 @@ export class UserDashboardComponent implements OnInit {
     this.spinner.show();
     this.userService.updateUserLeaveDetails(leaveId, status).subscribe(response => {
       if (response) {
-        if (status == "Reject") {
+        if (status == "Rejected") {
           let user = this.usersList.filter(z => z.EmployeeCode == employeecode)[0];
           let userLeave = this.usersLeavesList.filter(z => z.LeaveId == leaveId)[0];
           if (user != null) {
