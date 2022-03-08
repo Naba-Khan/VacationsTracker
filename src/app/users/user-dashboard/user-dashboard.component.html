@@ -32,14 +32,14 @@
                 <td>{{user.Role}}</td>
                 <td *ngIf="showInactive">{{user.Status}}</td>
                 <td>
-                  <a href="#"><img class="action-icon" title="View User Details" (click)="ViewUser(user.EmployeeCode)"
+                  <a><img class="action-icon" title="View User Details" (click)="ViewUser(user.EmployeeCode)"
                       height="40" width="40" src="../../../assets/icons/view-icon.png" /></a>
                   <a routerLink="/editUser/{{user.EmployeeCode}}"><img class="action-icon" title="Edit User" height="40"
                       width="40" src="../../../assets/icons/edit.png" /></a>
-                  <a *ngIf="user.Status =='Active'" href="#"><img class="action-icon" title="Apply For Leave"
+                  <a *ngIf="user.Status =='Active'"><img class="action-icon" title="Apply For Leave"
                       (click)="ApplyLeave(user.EmployeeCode)" height="40" width="40"
                       src="../../../assets/icons/leave.png" /></a>
-                  <a *ngIf="isAdmin" href="#"><img class="action-icon" title="Delete User"
+                  <a *ngIf="isAdmin"><img class="action-icon" title="Delete User"
                       (click)="DeleteUser(user.EmployeeCode)" height="40" width="40"
                       src="../../../assets/icons/delete.png" /></a>
                 </td>
